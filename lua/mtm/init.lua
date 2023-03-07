@@ -69,10 +69,17 @@ cvars.AddChangeCallback( 'mtm_thumb_format', function()
     end
 end, addonName )
 
-concommand.Add( 'mtm_start', function()
+function Stop()
     if IsValid( Panel ) then
         Panel:Remove()
     end
+end
+
+function Start()
+    Stop()
 
     Panel = vgui.Create( 'mtm.main' )
-end )
+end
+
+concommand.Add( 'mtm_start', Start )
+concommand.Add( 'mtm_stop', Stop )
