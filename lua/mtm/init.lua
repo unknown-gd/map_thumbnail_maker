@@ -44,13 +44,16 @@ View = {
 function Make( x, y, w, h, format )
     render.RenderView( View )
 
-    file.Write( 'map_thumbs/' .. game.GetMap() .. '.' .. ( format or 'png' ), render.Capture( {
+    local filePath = 'map_thumbs/' .. game.GetMap() .. '.' .. ( format or 'png' )
+    file.Write( filePath, render.Capture( {
         ['format'] = format or 'png',
         ['x'] = x,
         ['y'] = y,
         ['w'] = w,
         ['h'] = h
     } ) )
+
+    notification.AddLegacy( 'Result saved in \'' .. filePath .. '\'.', NOTIFY_GENERIC, 3 )
 end
 
 cvars.AddChangeCallback( 'mtm_thumb_size', function()
@@ -71,6 +74,7 @@ end, addonName )
 
 function Stop()
     if IsValid( Panel ) then
+        notification.AddLegacy( 'Creating a thumbnail has been cancelled.', NOTIFY_UNDO, 3 )
         Panel:Remove()
     end
 end
