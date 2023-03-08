@@ -1,10 +1,13 @@
+local vgui_Create = vgui.Create
+local IsValid = IsValid
+local mtm = mtm
+
 local PANEL = {}
 
 function PANEL:Init()
     self:MakePopup()
-
-    self.Frame = vgui.Create( 'mtm.frame', self )
-    self.Options = vgui.Create( 'mtm.options', self )
+    self.Frame = vgui_Create( 'mtm.frame', self )
+    self.Options = vgui_Create( 'mtm.options', self )
 end
 
 function PANEL:Make()
@@ -15,15 +18,20 @@ function PANEL:Make()
     end
 end
 
-local input_IsButtonDown = input.IsButtonDown
-local KEY_ESCAPE = KEY_ESCAPE
+do
 
-function PANEL:Think()
-    if input_IsButtonDown( KEY_ESCAPE ) then
-        gui.HideGameUI()
-        self:Remove()
-        return
+    local input_IsButtonDown = input.IsButtonDown
+    local gui_HideGameUI = gui.HideGameUI
+    local KEY_ESCAPE = KEY_ESCAPE
+
+    function PANEL:Think()
+        if input_IsButtonDown( KEY_ESCAPE ) then
+            gui_HideGameUI()
+            mtm.Stop()
+            return
+        end
     end
+
 end
 
 function PANEL:PerformLayout( w, h )
