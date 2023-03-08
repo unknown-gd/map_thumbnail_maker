@@ -6,8 +6,8 @@ In-game map thumbnail maker.
 - `mtm_stop` - Stops capturing
 
 ## ConVars
-- `mtm_thumb_size` - Map thumbnail size (in pixels)
-- `mtm_thumb_format` - Map thumbnail image format (png, jp, jpeg)
+- `mtm_size` - Map thumbnail size (in pixels)
+- `mtm_format` - Map thumbnail image format (png, jp, jpeg)
 
 ### In game:
 ![image](https://user-images.githubusercontent.com/44779902/223658858-1c93428a-2133-4dc8-8aa8-0c0bbd4a3a91.png)
