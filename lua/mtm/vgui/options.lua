@@ -37,7 +37,7 @@ function PANEL:Init()
         formats:Dock( FILL )
 
         function formats:OnSelect( _, value )
-            RunConsoleCommand( 'mtm_thumb_format', value )
+            RunConsoleCommand( 'mtm_format', value )
         end
 
         for name in pairs( mtm.AllowedFormats ) do
@@ -52,7 +52,7 @@ function PANEL:Init()
         self.Slider = slider
         slider:Dock( TOP )
 
-        local thumbSize = GetConVar( 'mtm_thumb_size' )
+        local thumbSize = GetConVar( 'mtm_size' )
         slider:SetText( 'Image Size:' )
         slider:SetMin( thumbSize:GetMin() )
         slider:SetDecimals( 0 )

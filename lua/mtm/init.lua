@@ -1,8 +1,8 @@
 local addonName = 'Map Thumbnails Maker'
 
 -- ConVars
-local thumbSize = CreateClientConVar( 'mtm_thumb_size', '512', true, false, 'Map thumbnail size (in pixels)', 64, 2048 )
-local thumbFormat = CreateClientConVar( 'mtm_thumb_format', 'png', true, false, 'Map thumbnail image format (png, jp, jpeg)' )
+local thumbSize = CreateClientConVar( 'mtm_size', '512', true, false, 'Map thumbnail size (in pixels)', 64, 2048 )
+local thumbFormat = CreateClientConVar( 'mtm_format', 'png', true, false, 'Map thumbnail image format (png, jp, jpeg)' )
 
 module( 'mtm', package.seeall )
 
@@ -56,7 +56,7 @@ function Make( x, y, w, h, format )
     notification.AddLegacy( 'Result saved in \'' .. filePath .. '\'.', NOTIFY_GENERIC, 3 )
 end
 
-cvars.AddChangeCallback( 'mtm_thumb_size', function()
+cvars.AddChangeCallback( 'mtm_size', function()
     if not IsValid( Panel ) then return end
     local frame = Panel.Frame
     if IsValid( frame ) then
@@ -64,7 +64,7 @@ cvars.AddChangeCallback( 'mtm_thumb_size', function()
     end
 end, addonName )
 
-cvars.AddChangeCallback( 'mtm_thumb_format', function()
+cvars.AddChangeCallback( 'mtm_format', function()
     if not IsValid( Panel ) then return end
     local options = Panel.Options
     if IsValid( options ) then
