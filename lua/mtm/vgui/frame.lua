@@ -98,16 +98,16 @@ function PANEL:OnMouseReleased( keyCode )
     end
 end
 
-local KEY_ENTER = KEY_ENTER
+-- local KEY_ENTER = KEY_ENTER
 
 function PANEL:Think()
-    if self:IsHovered() and input.IsButtonDown( KEY_ENTER ) then
-        local parent = self:GetParent()
-        if IsValid( parent ) then
-            parent:Make()
-            return
-        end
-    end
+    -- if self:IsHovered() and input.IsButtonDown( KEY_ENTER ) then
+    --     local parent = self:GetParent()
+    --     if IsValid( parent ) then
+    --         parent:Make()
+    --         return
+    --     end
+    -- end
 
     if self.Pressed then
         if input.IsMouseDown( MOUSE_LEFT ) then
