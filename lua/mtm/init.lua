@@ -1,8 +1,8 @@
-local addonName = 'Map Thumbs Maker'
+local addonName = 'Map Thumbnails Maker'
 
 -- ConVars
-local thumbSize = CreateClientConVar( 'mtm_thumb_size', '512', true, false, 'Map thumb size (in pixels)', 64, 2048 )
-local thumbFormat = CreateClientConVar( 'mtm_thumb_format', 'png', true, false, 'Map thumb image format (png, jp, jpeg)' )
+local thumbSize = CreateClientConVar( 'mtm_thumb_size', '512', true, false, 'Map thumbnail size (in pixels)', 64, 2048 )
+local thumbFormat = CreateClientConVar( 'mtm_thumb_format', 'png', true, false, 'Map thumbnail image format (png, jp, jpeg)' )
 
 module( 'mtm', package.seeall )
 
