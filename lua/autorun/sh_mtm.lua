@@ -3,10 +3,10 @@ if CLIENT then
         file.CreateDir( 'map_thumbs' )
     end
 
-    include( 'mtm/vgui/options.lua' )
-    include( 'mtm/vgui/frame.lua' )
-    include( 'mtm/vgui/main.lua' )
     include( 'mtm/init.lua' )
+    include( 'mtm/vgui/main.lua' )
+    include( 'mtm/vgui/frame.lua' )
+    include( 'mtm/vgui/options.lua' )
     return
 end
 
