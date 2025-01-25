@@ -55,12 +55,13 @@ mtm.View = view
 function mtm.Capture( x, y, w, h )
     render.RenderView( view )
 
-    local filePath = "maps/thumb/" .. game.GetMap() .. ".jpg"
+    local filePath = "maps/thumb/" .. game.GetMap() .. ".png"
     file.Write( filePath, render.Capture( {
-        x = x, y = y, w = w, h = h, format = "jpg"
+        x = x, y = y, w = w, h = h, format = "png", alpha = false
     } ) )
 
     notification.AddLegacy( "Result saved in \"" .. filePath .. "\".", NOTIFY_GENERIC, 3 )
+    surface.PlaySound( "garrysmod/balloon_pop_cute.wav" )
 end
 
 do
@@ -82,7 +83,6 @@ do
 
         if not silent then
             notification.AddLegacy( "Creating a thumbnail has been cancelled.", NOTIFY_UNDO, 3 )
-            surface.PlaySound( "garrysmod/balloon_pop_cute.wav" )
         end
 
         capture_panel:Remove()
@@ -105,6 +105,7 @@ do
 
     local surface = surface
     local render = render
+    local cam = cam
 
     ---@class MapThumbnailMakerFrame : Panel
     local PANEL = {}
@@ -139,7 +140,9 @@ do
             end
         end )
 
-        hook.Add( "HUDPaint", self, function()
+        hook.Add( "PreDrawViewModel", self, function()
+            cam.Start2D()
+
             surface.SetDrawColor( 255, 255, 255 )
 
             render.ClearStencil()
@@ -183,7 +186,19 @@ do
             render.ClearStencil()
 
             self:PaintManual()
+            cam.End2D()
+
+            return true
         end )
+
+        hook.Add( "HUDShouldDraw", self, function()
+            return false
+        end )
+    end
+
+    function PANEL:OnRemove()
+        hook.Remove( "PreDrawViewModel", self )
+        hook.Remove( "HUDShouldDraw", self )
     end
 
     function PANEL:Paint( w, h )
@@ -358,7 +373,7 @@ do
 
         local label = self.Label
         if label and label:IsValid() then
-            label:SetText( "File: data/maps/thumb/" .. game.GetMap() .. ".jpg" )
+            label:SetText( "File: data/maps/thumb/" .. game.GetMap() .. ".png" )
         end
 
         if self.Initialized then return end
